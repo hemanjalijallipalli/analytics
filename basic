@@ -1,2 +1,16 @@
 az vm create  --name anjali --resource-group 2f5652d2-6104-47c0-9be5-ea7323d1450e --image UbuntuLTS  --location eastus  --size Standard_DS2_v2  --admin-username azureuser   --generate-ssh-keys
 az vm get-instance-view --name anjali5 --resource-group 2f5652d2-6104-47c0-9be5-ea7323d1450e --output table
+az vm extension set   
+--resource-group 2f5652d2-6104-47c0-9be5-ea7323d1450e 
+--vm-name anjali 
+  --name customScript 
+  --publisher Microsoft.Azure.Extensions 
+  --settings '{"fileUris":["https://raw.githubusercontent.com/MicrosoftDocs/mslearn-welcome-to-azure/master/configure-nginx.sh"]}' \
+  --protected-settings '{"commandToExecute": "./configure-nginx.sh"}'
+  
+  az vm open-port 
+  --name anjali 
+  --resource-group 2f5652d2-6104-47c0-9be5-ea7323d1450e 
+  --port 80
+  
+  az vm show --name anjali --resource-group 2f5652d2-6104-47c0-9be5-ea7323d1450e --show-details --query [publicIps] --output tsv
