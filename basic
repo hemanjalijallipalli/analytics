@@ -1,0 +1,2 @@
+az vm create  --name anjali --resource-group 2f5652d2-6104-47c0-9be5-ea7323d1450e --image UbuntuLTS  --location eastus  --size Standard_DS2_v2  --admin-username azureuser   --generate-ssh-keys
+az vm get-instance-view --name anjali5 --resource-group 2f5652d2-6104-47c0-9be5-ea7323d1450e --output table
